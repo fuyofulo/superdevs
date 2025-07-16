@@ -68,5 +68,20 @@ println!("The area of the rectangle is {}", rect1.area());
 
 `rect1.area()` sends the `rect1` data to the `area` function defined in the `Rectangle` impl and returns a `u32` value which is the area of the rectangle.
 
-Inside the area function, we are using `&self`. `&self` is an immutable reference to the struct, so this means we cannot change the values present in the struct. 
+Inside the area function, we are using `&self`. `&self` is an immutable reference to the struct, so this means we cannot change the values present in the struct.
 
+Structs can also have static functions, which means they don't need values from a particular instance of the struct.
+
+We can call them using `Struct::function_name()`.
+
+Example:
+
+```rust
+Rectangle::whoami();
+```
+
+Output:
+
+```
+I am a rectangle
+```

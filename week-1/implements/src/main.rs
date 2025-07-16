@@ -8,6 +8,11 @@ struct Square {
 }
 
 impl Rectangle {
+
+    fn whoami() {
+        println!("I am a rectangle");
+    }
+
     fn area(&self) -> u32 {
         return self.width * self.height
     }
@@ -18,6 +23,11 @@ impl Rectangle {
 }
 
 impl Square {
+
+    fn whoami() {
+        println!("I am a square");
+    }
+
     fn area(&self) -> u32 {
         return self.side * self.side
     }
@@ -40,8 +50,11 @@ fn main() {
         side: 10
     };
 
+    Rectangle::whoami();
     println!("the area of the rectangle is {}", rect1.area());
     println!("the perimeter of the rectangle is {}", rect1.perimeter());
+
+    Square::whoami();
     println!("the area of the square is {}", square1.area());
     println!("the perimeter of the square is {}", square1.perimeter());
 }
