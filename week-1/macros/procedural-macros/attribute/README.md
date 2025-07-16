@@ -114,26 +114,6 @@ enum Status {
 "Active"
 ```
 
-## Common Serde Attributes
-
-### Container Attributes (on structs/enums)
-- `#[serde(rename_all = "snake_case")]` - Rename all fields
-- `#[serde(deny_unknown_fields)]` - Reject unknown fields during deserialization
-- `#[serde(tag = "type")]` - Tagged enum representation
-
-### Field Attributes
-- `#[serde(rename = "new_name")]` - Rename field
-- `#[serde(skip)]` - Skip field entirely
-- `#[serde(skip_serializing)]` - Skip only during serialization
-- `#[serde(skip_deserializing)]` - Skip only during deserialization
-- `#[serde(skip_serializing_if = "path")]` - Conditional skipping
-- `#[serde(default)]` - Use default value if missing during deserialization
-- `#[serde(flatten)]` - Flatten nested struct fields
-
-### Variant Attributes (on enum variants)
-- `#[serde(rename = "new_name")]` - Rename variant
-- `#[serde(skip)]` - Skip variant
-
 ## Running the Examples
 
 To see all examples in action:
@@ -146,81 +126,6 @@ This will demonstrate:
 1. Basic struct serialization and deserialization
 2. Field attribute effects on JSON output
 3. Enum serialization behavior
-
-## Advanced Attribute Macro Concepts
-
-### 1. Nested Attributes
-```rust
-#[derive(Serialize)]
-struct Config {
-    #[serde(rename = "db_url", skip_serializing_if = "String::is_empty")]
-    database_url: String,
-}
-```
-
-### 2. Conditional Compilation
-```rust
-#[derive(Serialize)]
-struct ApiResponse {
-    data: String,
-    
-    #[cfg(debug_assertions)]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    debug_info: Option<String>,
-}
-```
-
-### 3. Custom Serialization Functions
-```rust
-#[derive(Serialize)]
-struct User {
-    #[serde(serialize_with = "serialize_name")]
-    name: String,
-}
-
-fn serialize_name<S>(name: &String, serializer: S) -> Result<S::Ok, S::Error>
-where
-    S: serde::Serializer,
-{
-    serializer.serialize_str(&name.to_uppercase())
-}
-```
-
-## Other Popular Attribute Macros
-
-### 1. **Tokio** (async runtime)
-```rust
-#[tokio::main]
-async fn main() {
-    // async code here
-}
-```
-
-### 2. **Actix-web** (web framework)
-```rust
-#[actix_web::get("/users/{id}")]
-async fn get_user(path: web::Path<u32>) -> impl Responder {
-    // handler code
-}
-```
-
-### 3. **Clap** (command line parsing)
-```rust
-#[derive(Parser)]
-#[command(author, version, about)]
-struct Args {
-    #[arg(short, long)]
-    name: String,
-}
-```
-
-### 4. **SQLx** (database queries)
-```rust
-#[sqlx::query("SELECT * FROM users WHERE id = ?")]
-async fn get_user(id: i64) -> Result<User, sqlx::Error> {
-    // query execution
-}
-```
 
 ## Benefits of Attribute Macros
 
