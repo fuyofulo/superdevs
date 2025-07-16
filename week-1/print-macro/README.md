@@ -33,4 +33,12 @@ fn main() {
 
 As we can see, the `println!` was converted into this somewhat complex code where multiple crates are being used just to print this one thing.
 
-These are macros. 
+These are macros.
+
+Then this expanded code is converted into an executable binary file which is then run.
+
+The binary file is created at `target/debug/print-macro` after running `cargo build`.
+
+Here is a diagram illustrating the process:
+
+![Diagram](image.png) 
