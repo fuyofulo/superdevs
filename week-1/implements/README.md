@@ -72,7 +72,7 @@ Inside the area function, we are using `&self`. `&self` is an immutable referenc
 
 Structs can also have static functions, which means they don't need values from a particular instance of the struct.
 
-We can call them using `Struct::function_name()`.
+We can call them using `Struct_name::function_name()`.
 
 Example:
 
